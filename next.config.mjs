@@ -6,13 +6,20 @@ const nextConfig = {
   },
   // Ignore functions directory during build
   webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.externals.push({
-        'firebase-admin': 'firebase-admin',
-        'firebase-functions': 'firebase-functions',
-      });
-    }
+    // Exclude functions directory from webpack
+    config.externals.push('firebase-admin', 'firebase-functions');
+
+    // Ignore functions directory in webpack
+    config.module.rules.push({
+      test: /functions\/.*\.ts$/,
+      use: 'ignore-loader'
+    });
+
     return config;
+  },
+  // Exclude functions from TypeScript compilation
+  typescript: {
+    ignoreBuildErrors: false,
   },
 };
 

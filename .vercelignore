@@ -1,0 +1,17 @@
+# Ignore Firebase functions directory
+functions/
+
+# Ignore Firebase config files (deployed separately)
+firestore.rules
+storage.rules
+firebase.json
+.firebaserc
+
+# Ignore development files
+.env.local
+.env.*.local
+
+# Ignore build artifacts
+.next/
+node_modules/
+*.log
